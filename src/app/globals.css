@@ -25,3 +25,15 @@ margin: 0;
   transition: 0.5s;
   transform: scale(1.05);
 }
+
+.swiperContainer{
+  width:full ;
+  height: full;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.overlySwiper{
+  width: full;
+  height: full;
+  background-color: rgba(0, 0, 0, 0.458);
+}

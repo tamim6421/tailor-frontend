@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <div className=" shadow-md w-full">
-      <div className="navbar fixed z-10 bg-opacity-50 px-10 bg-slate-900 text-white">
+      <div className="navbar fixed z-10 bg-opacity-50 md:px-10 bg-[#140e0646]  text-white">
         
         <div className="navbar-start">
           <div className="dropdown">
