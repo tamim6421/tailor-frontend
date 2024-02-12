@@ -1,4 +1,5 @@
 import Banner from '@/components/Banner/Banner';
+import Footer from '@/components/Footer/Footer';
 import Navbar from '@/components/Navbar/Navbar';
 import React from 'react';
 
@@ -8,7 +9,7 @@ const HomeLayout = () => {
       <Navbar></Navbar>
       <div className="">
         <Banner></Banner>
-      <p>this is home </p>
+        <Footer></Footer>
       </div>
     </div>
   );
