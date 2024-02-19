@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <div className=" shadow-md w-full">
-      <div className="navbar fixed z-10 bg-opacity-50 md:px-10 bg-[#140e0646]  text-white">
+      <div className="navbar fixed z-10 bg-opacity-50 md:px-10 bg-[#e0deded8]">
         
         <div className="navbar-start">
           <div className="dropdown">
@@ -93,10 +93,21 @@ const Navbar = () => {
 
           <ul className=" space-x-8 menu-horizontal px-1">
             <li>
-              <Link className={` ${pathname === '/' ? '"relative hover:border-b-2 border-amber-500 inline-block text-white hover:text-yellow-500 group font-semibold pt-2 px-2 ': 'relative border-b-2 border-transparent inline-block text-white hover:text-yellow-500 group font-semibold pt-2 px-2'}`} href="/">Projects</Link>
+              <Link className={` ${pathname === '/category' ? "relative border-b border-amber-500 inline-block text-black hover:text-gray-800 group pt-2 px-2": "relative border-b border-transparent inline-block text-black hover:text-gray-800 group pt-2 px-2"}`} href="/category">Category
+              <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
+              </Link>
             </li>
+            
             <li>
-              <Link className={` ${pathname === '/' ? '"relative hover:border-b-2 border-amber-500 inline-block text-white hover:text-yellow-500 group font-semibold pt-2 px-2 ': 'relative border-b-2 border-transparent inline-block text-white hover:text-yellow-500 group font-semibold pt-2 px-2'}`} href="/">Team</Link>
+              <Link className={` ${pathname === '/contact' ? "relative border-b border-amber-500 inline-block text-black hover:text-gray-800 group pt-2 px-2": "relative border-b border-transparent inline-block text-black hover:text-gray-800 group pt-2 px-2"}`} href="/contact">Contact
+              <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
+              </Link>
+            </li>
+
+            <li>
+              <Link className={` ${pathname === '/' ? "relative border-b border-amber-500 inline-block text-black hover:text-gray-800 group pt-2 px-2": "relative border-b border-transparent inline-block text-black hover:text-gray-800 group pt-2 px-2"}`} href="/">Team
+              <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
+              </Link>
             </li>
 
            
