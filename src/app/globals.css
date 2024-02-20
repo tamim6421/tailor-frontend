@@ -2,32 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+*{
+box-sizing: border-box;
+padding: 0 ;
+margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.containerB{
+  height: 100vh;
+  width: 100%;
+  background-image: url('https://i.ibb.co/wS1jV8L/banner.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.overlyB{
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.458);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.box:hover{
+  transition: 0.5s;
+  transform: scale(1.05);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.swiperContainer{
+  width:full ;
+  height: full;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.overlySwiper{
+  width: full;
+  height: full;
+  background-color: rgba(0, 0, 0, 0.458);
 }
