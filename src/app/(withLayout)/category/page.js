@@ -3,10 +3,16 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import {BASE_URL} from "../../../components/utils/api"
+import {IMAGE_URL} from "../../../components/utils/image_url"
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment} from 'react'
+import Image from 'next/image'
+
+
 
 
 const Category = () => {
-
+  let [isOpen, setIsOpen] = useState(false)
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true)
 
@@ -14,7 +20,7 @@ const Category = () => {
         const fetchData = async () => {
           try {
             setLoading(true);
-            const response = await axios.get(`${BASE_URL}/sleeve_view`);
+            const response = await axios.get(`${BASE_URL}/slider_view`);
             setData(response?.data?.data);
 
               // Store data in local storage
@@ -30,12 +36,118 @@ const Category = () => {
         fetchData();
       }, []);
 
-      console.log(data)
+      // console.log(data)
+
+      function closeModal() {
+        setIsOpen(false)
+      }
+    
+      function openModal() {
+        setIsOpen(true)
+      }
+    
+
+// Retrieve data from localStorage
+const storedData = localStorage.getItem('data');
+if (storedData) {
+
+  const parsedData = JSON.parse(storedData);
+  console.log(parsedData);
+} else {
+  console.log('No data found in localStorage');
+}
+
 
 
     return (
-        <div className="min-h-[100vh] pt-20">
-            this is categry page {data?.length}
+        <div className="min-h-[100vh] px-5 pt-20">
+
+   
+{/* slider menu sections  */}
+    <div className="mb-10">
+
+    {
+  data && data.map( item => (
+    
+    <div
+    onClick={openModal}
+    className="card w-64 bg-base-100 shadow-md mb-10 cursor-pointer" key={item.id}>
+      <figure>
+        <Image src={IMAGE_URL + item?.image} alt="slide image" height={200} width={200} ></Image>
+       </figure>
+      <div className="card-body">
+        <h2 className="card-title">
+        {item?.slider_name}
+        </h2>
+     
+        
+      </div>
+    </div>
+  ))
+}
+ 
+
+    </div>
+
+
+
+
+
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
+                  >
+                   Modal
+                  </Dialog.Title>
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-500">
+                      show pocket
+                    </p>
+                  </div>
+
+                  <div className="mt-4">
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={closeModal}
+                    >
+                      Got it, thanks!
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
+
         </div>
     );
 };
