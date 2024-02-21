@@ -18,7 +18,8 @@ import image4 from "../../../assets/button.jpg";
 
 const HomeOurService = () => {
   return (
-    <div className="my-36">
+    <div className="my-36 overflow-hidden"  data-aos="fade-up"
+    data-aos-duration="1000">
       <div className="md:flex space-y-5 w-3/4 mx-auto items-start justify-between">
         <div>
           <p className="uppercase">all you need</p>

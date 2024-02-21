@@ -5,20 +5,21 @@ import { FaPhone } from "react-icons/fa6";
 
 const Contact = () => {
   return (
-    <div className="min-h-[100vh] bg-[#F6F5ED]">
+    <div className="min-h-[100vh] bg-[#F6F5ED] overflow-hidden">
       <div className="pt-20 max-w-[1200px] mx-auto ">
 
         {/* title sections  */}
         <div>
           <p className="text-center mt-20 text-3xl font-semibold">Contact</p>
-          <p className="flex mt-10  items-center justify-center">
+          <p className="flex mt-10  items-center justify-center" data-aos="fade-up"
+     data-aos-duration="1000">
             <IoIosArrowDown className="text-2xl text-orange-500" />
           </p>
         </div>
 
         {/* details sections  */}
 
-        <div className="md:flex gap-10">
+        <div className="md:flex gap-10" data-aos="fade-up-right">
             <div className="flex-[1] md:w-3/4 mx-auto px-8">
 
             <div className="space-y-6">

@@ -1,97 +1,103 @@
-"use client"
+"use client";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {BASE_URL} from "../../../components/utils/api"
-import {IMAGE_URL} from "../../../components/utils/image_url"
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment} from 'react'
-import Image from 'next/image'
-
-
-
+import { BASE_URL } from "../../../components/utils/api";
+import { IMAGE_URL } from "../../../components/utils/image_url";
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import Image from "next/image";
 
 const Category = () => {
-  let [isOpen, setIsOpen] = useState(false)
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true)
+  let [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            setLoading(true);
-            const response = await axios.get(`${BASE_URL}/slider_view`);
-            setData(response?.data?.data);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const response = await axios.get(`${BASE_URL}/slider_view`);
+  //       setData(response?.data?.data);
 
-              // Store data in local storage
-        localStorage.setItem('data', JSON.stringify(response?.data?.data));
+  //       // Store data in local storage
+  //       localStorage.setItem("data", JSON.stringify(response?.data?.data));
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-          } catch (error) {
-            console.error('Error fetching data:', error.message);
-          } finally {
-            setLoading(false);
-          }
-        };
-    
-        fetchData();
-      }, []);
+  //   fetchData();
+  // }, []);
 
-      // console.log(data)
+  // console.log(data)
 
-      function closeModal() {
-        setIsOpen(false)
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  // Retrieve data from localStorage
+  // const storedData = localStorage.getItem("data");
+  // if (storedData) {
+  //   const parsedData = JSON.parse(storedData);
+  //   console.log(parsedData);
+  // } else {
+  //   console.log("No data found in localStorage");
+  // }
+
+  useEffect(() => {
+    const fetchDataFromLocalStorage = async () => {
+      try {
+        const storedData = localStorage.getItem("data");
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          setData(parsedData);
+        } else {
+          console.log("No data found in localStorage");
+        }
+      } catch (error) {
+        console.error("Error retrieving data from localStorage:", error);
       }
-    
-      function openModal() {
-        setIsOpen(true)
-      }
-    
+    };
 
-// Retrieve data from localStorage
-const storedData = localStorage.getItem('data');
-if (storedData) {
+    fetchDataFromLocalStorage()
+    return () => {
+      // Cleanup logic, if needed
+    };
+  }, []); 
+  
 
-  const parsedData = JSON.parse(storedData);
-  console.log(parsedData);
-} else {
-  console.log('No data found in localStorage');
-}
-
-
-
-    return (
-        <div className="min-h-[100vh] px-5 pt-20">
-
-   
-{/* slider menu sections  */}
-    <div className="mb-10">
-
-    {
-  data && data.map( item => (
-    
-    <div
-    onClick={openModal}
-    className="card w-64 bg-base-100 shadow-md mb-10 cursor-pointer" key={item.id}>
-      <figure>
-        <Image src={IMAGE_URL + item?.image} alt="slide image" height={200} width={200} ></Image>
-       </figure>
-      <div className="card-body">
-        <h2 className="card-title">
-        {item?.slider_name}
-        </h2>
-     
-        
+  return (
+    <div className="min-h-[100vh] px-5 pt-20">
+      {/* slider menu sections  */}
+      <div className="mb-10">
+        {data &&
+          data.map((item) => (
+            <div
+              onClick={openModal}
+              className="card w-64 bg-base-100 shadow-md mb-10 cursor-pointer"
+              key={item.id}
+            >
+              <figure>
+                <Image
+                  src={IMAGE_URL + item?.image}
+                  alt="slide image"
+                  height={200}
+                  width={200}
+                ></Image>
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">{item?.slider_name}</h2>
+              </div>
+            </div>
+          ))}
       </div>
-    </div>
-  ))
-}
- 
-
-    </div>
-
-
-
-
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -123,12 +129,10 @@ if (storedData) {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                   Modal
+                    Modal
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      show pocket
-                    </p>
+                    <p className="text-sm text-gray-500">show pocket</p>
                   </div>
 
                   <div className="mt-4">
@@ -146,10 +150,8 @@ if (storedData) {
           </div>
         </Dialog>
       </Transition>
-
-
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Category;

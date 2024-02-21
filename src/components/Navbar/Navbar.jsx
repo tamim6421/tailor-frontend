@@ -55,7 +55,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link href={"/"}>
-            <p className="text-3xl font-bold">
+            <p className="text-3xl text-yellow-600 font-bold">
 
             Tailor
             </p>
@@ -114,7 +114,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-    <p className="bg-yellow-500 px-3 py-2 rounded">Call Now </p>
+    <p className="bg-yellow-500 px-3 py-2 text-white rounded">Call Now </p>
   </div>
       </div>
     </div>

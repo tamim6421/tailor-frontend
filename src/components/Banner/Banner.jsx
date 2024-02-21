@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <div className="containerB ">
+    <div className="containerB overflow-hidden ">
       <div className="overlyB">
         <div className="text-white"></div>
         <div>
@@ -20,7 +20,8 @@ const Banner = () => {
                 </h1>
                 <div className="mt-10 ml-5">
 
-                <p className=" px-10 py-2 block mx-auto bg-yellow-600 text-center text-white max-w-max hover:bg-yellow-700  cursor-pointer">Learn More </p>
+                <p  className=" px-10 py-2 block mx-auto bg-yellow-600 text-center text-white max-w-max hover:bg-yellow-700  cursor-pointer" data-aos="fade-up"
+     data-aos-duration="1000">Learn More </p>
                 </div>
 
               </div>
